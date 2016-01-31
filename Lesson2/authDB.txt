@@ -1,0 +1,46 @@
+use admin
+
+//create admin accounts //use createUser addUser deprecated
+db.createUser( { user: "dbadmin",
+              pwd: "test",
+			  roles: [ "readWriteAnyDatabase",
+			           "dbAdminAnyDatabase",
+					   "clusterAdmin" ]});
+db.createUser( { user: "useradmin",
+              pwd: "test",
+			  roles: [ "userAdminAnyDatabase" ]});
+
+//create user accounts
+use test
+db.createUser( { user: "testWriter",
+              pwd: "test",
+              roles: [ "readWrite" ] } );
+
+db.createUser( { user: "testReader",
+              pwd: "test",
+              roles: [ "read" ] } );
+			  
+//shutdown and restart mongodb with authentication
+use admin
+db.shutdownServer()
+mongod -dbpath c:\mongod\data\db --auth
+
+//use authentication to view users
+mongo
+use admin
+db.auth("useradmin", "test")
+use test
+show users
+show users
+db.auth("useradmin", "test");
+show users
+
+//restart mongod without authentication
+use admin
+db.shutdownServer()
+mongo -dbpath c:\mongodd\data\db
+
+
+
+			  
+			  

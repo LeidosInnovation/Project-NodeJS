@@ -1,0 +1,9 @@
+div{
+  display: inline-block;
+  padding: 5px;
+  border:10px ridge blue; border-radius: 5px;
+  font: bold 26px/30px Helvitica, sans-serif;
+  background-color: blue;
+  color: white;
+  text-align: center;  
+}

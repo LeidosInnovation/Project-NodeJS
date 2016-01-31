@@ -1,0 +1,7 @@
+//run at command prompt
+node words_init.js
+
+mongo
+show dbs
+use words
+db.word.find()

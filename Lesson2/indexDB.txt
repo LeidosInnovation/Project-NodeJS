@@ -1,0 +1,13 @@
+use indexedDB
+
+db.cars.insert({vin: "", make: "", model: "", color: "", price: ""});
+db.cars.getIndexes();
+
+db.cars.ensureIndex({make: 1, model: 1});
+db.cars.getIndexes();
+
+db.cars.ensureIndex({vin: 1}, {unique: true});
+db.cars.getIndexes();
+
+db.cars.dropIndex({make: 1, model: 1});
+db.cars.getIndexes();
