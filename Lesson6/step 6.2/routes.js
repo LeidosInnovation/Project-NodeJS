@@ -1,9 +1,9 @@
 var express = require('express');
 
-modules.exports = function(app) {
+module.exports = function(app) {
   app.use('/static', express.static('./static'));
   
-  app.get('/', function(req, res) {
+  app.get('/', function(req, res){
 	  //+ add temp user data
 	  req.session.userID = "test";
 	  req.session.username = "tester";
@@ -19,7 +19,7 @@ modules.exports = function(app) {
 	  }
   });
   
-  app.get('/user', function(req, res) {
+  app.get('/user', function(req, res){
 	  //+ add session verify
 	  if (req.session.userID) {
 		  res.render('user', {msg:req.session.msg});
@@ -28,19 +28,19 @@ modules.exports = function(app) {
 		  res.redirect('/login');
 	  }
   });
-  
-  app.get('/signup', function(req, res) {
+
+  app.get('/signup', function(req, res){
 	  res.render('signup', {msg:req.session.msg});
   });
-  
-  app.get('/login', function(req, res) {
+
+  app.get('/login', function(req, res){
 	  res.render('login', {msg:req.session.msg});
   });
   
-  app.get('/logout', function(req, res) {
+  app.get('/logout', function(req, res){
 	  //+ add destroy to clear session
 	  req.session.destroy(function(){
 		 res.redirect('/login');
 	  });
   });  
-};
+};  

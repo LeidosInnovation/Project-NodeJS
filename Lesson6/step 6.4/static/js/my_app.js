@@ -10,5 +10,4 @@ angular.module('myApp', []).
 		  $scope.user = {};
 		  $scope.error = data;
 		});		
-	});
-}]);
+	}]);

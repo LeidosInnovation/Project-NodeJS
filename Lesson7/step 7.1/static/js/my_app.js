@@ -4,7 +4,7 @@ app.controller('tableController', function($scope, $http) {
   
   $scope.getWords = function(){
     $http({url: 'http://localhost/words', method:"GET",
-	       params:{}})
+	       params:{ }})
     .success(function(data, status, headers, config) {
 	   $scope.words = data;
 	})

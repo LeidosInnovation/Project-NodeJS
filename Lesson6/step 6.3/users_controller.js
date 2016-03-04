@@ -10,7 +10,7 @@ function hashPW(pwd) {
 }
 
 var dbConn = require('./db_connection');
-dbConn.getDBConnection(function(currentDB)) {
+dbConn.getDBConnection(function(currentDB) {
   myDB = currentDB;
   users = myDB.collection('users');
 });
@@ -101,7 +101,3 @@ exports.deleteUser = function(req, res){
 	  }
 	});	  
 };
-
-
-
-

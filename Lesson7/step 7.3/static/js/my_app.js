@@ -8,11 +8,10 @@ app.controller('tableController', function($scope, $http) {
   $scope.skipEnd = 0;
   
   $scope.getWords = function(){
-    $http({url: 'http://localhost/words', method:"GET",
+    $http({url: 'http://localhost/words', method:"GET",	       
 	       params:{ limit:$scope.limit,
 		            skip:$scope.skip,
-					//+ add contains to query parameters
-					contains:$scope.contains }})
+	       contains:$scope.contains }})	
     .success(function(data, status, headers, config) {
 	   $scope.words = data;
 	   $scope.skipEnd = $scope.skip + $scope.words.length;
@@ -28,6 +27,7 @@ app.controller('tableController', function($scope, $http) {
      $scope.getWords();
    };
    
+   //+ add next paging function
    $scope.next = function(){
      if($scope.words.length === $scope.limit){
 	    $scope.skip += parseInt($scope.limit);
@@ -35,7 +35,8 @@ app.controller('tableController', function($scope, $http) {
 	 }
    };
 
-    $scope.prev = function(){
+   //+ add previous paging function
+   $scope.prev = function(){
      if($scope.skip >0){
       if($scope.skip >= parseInt($scope.limit)){
          $scope.skip -= parseInt($scope.limit);

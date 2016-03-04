@@ -10,7 +10,7 @@ function hashPW(pwd) {
 }
 
 var dbConn = require('./db_connection');
-dbConn.getDBConnection(function(currentDB)) {
+dbConn.getDBConnection(function(currentDB) {
   myDB = currentDB;
   users = myDB.collection('users');
 });
@@ -62,15 +62,15 @@ exports.getUserProfile = function(req, res) {
 		if(!user){
 			res.json(404, {err: 'User Not Found.'});			
 		} else {
-			req.json(user);
+			res.json(user);
 		}
 	});
 };
 
 exports.updateUser = function(req, res) {
 	users.findOne({_id: new ObjectID(req.session.userID)}, function(err,user) {
-	  users.email = req.body.email;
-      users.color = req.body.color;
+	  user.email = req.body.email;
+      user.color = req.body.color;
       users.save(user, {w:1}, function(err) {
 		  if(err){
 			  res.session.error = error;			  
@@ -101,7 +101,3 @@ exports.deleteUser = function(req, res){
 	  }
 	});	  
 };
-
-
-
-

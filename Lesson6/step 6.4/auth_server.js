@@ -7,7 +7,7 @@ var expressSession = require('express-session');
 var mongoStore = require('connect-mongo')({session: expressSession});
 
 //+ connect to MongoDB
-var dbConn = require('./db_oonnection');
+var dbConn = require('./db_connection');
 dbConn.getDBConnection(function(currentDB) {
 	var app = express();
 	app.engine('.html',require('ejs').__express);
